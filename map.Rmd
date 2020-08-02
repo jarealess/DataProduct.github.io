@@ -1,0 +1,48 @@
+# **AUGUST 1, 2020**
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r echo=FALSE}
+library(leaflet)
+
+### creating a random icon
+NatIcon <- makeIcon(
+    iconUrl = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg",
+    iconWidth = 31*215/230, 
+    iconHeight=31,
+    iconAnchorX=31*215/230/2,
+    iconAnchorY = 16
+)
+
+
+### creando los popups
+NatPopups <- sample(c("Store A", "Store B", "Store C"),30,replace = TRUE)
+
+
+### latitud and longitud
+NatLatLong <- data.frame(lat=runif(50,min=6.15,max=6.35), 
+                 lng=runif(50,min=-75.63,max=-75.53))  
+
+### mapa
+NatLatLong %>% 
+    leaflet() %>% 
+    addTiles() %>% 
+    addMarkers(icon=NatIcon, 
+               popup=NatPopups,
+               clusterOptions = markerClusterOptions())
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
